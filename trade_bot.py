@@ -1,3 +1,5 @@
+from stock import Stock
+
 def show_main_menu():
     print("Welcome to the Trade Bot. \n")
     print("0. Check specific Stock.")
@@ -11,11 +13,15 @@ def show_main_menu():
             print("Invalid input. Please enter a number.")
 
 def check_specific_stock():
-    pass
+    stock_symbol = input("Enter the stock symbol you want to check: ").upper()
+    stock = Stock(id=stock_symbol, name=stock_symbol)
+    stock.update_stock()
 
 def get_stocks():
-    pass
-
+    stock_symbols = input("Enter the stock symbols you want to check, separated by commas: ").upper().split(',')
+    for symbol in stock_symbols:
+        stock = Stock(id=symbol.strip(), name=symbol.strip())
+        stock.update_stock()
 
 run = True
 while run:
@@ -23,7 +29,7 @@ while run:
 
     if user_input == 0:
         check_specific_stock()
-    elif user_input < 2:
+    elif user_input == 1:
         get_stocks()
     else:
         run = False
